@@ -15,7 +15,6 @@ The selected artist is Rihanna. There are 13 albums released. Excluding the revi
 - the more popular the album (M_pop=79), the lower the loudness (M_loud = 4.45).
 - the later the album, the quicker the tempo, the less the speech.
 
-## Track
+## Tracks
 - the quickest tempo of the track "HARD" (tempo = 182.03) and "What Now" (tempo = 180.011) does not show a good result in the market (popularity equals to 54 and 46 respectively)
-- key of C has the highest mean popularity (=70), and a relatively high acousticness (acous = 0.261).
--
+- key of C has the highest mean popularity (Mean_pop = 70), and a relatively high acousticness (Mean_acous = 0.261).
