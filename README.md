@@ -4,7 +4,7 @@ Feb.10
 The selected artist is Rihanna. There are 13 albums released. Excluding the revised versions, in total there are 8 official albums with 106 observations. 
 
 | M_album | M_track | SD_track |
-|---------|:-------:|---------:|
+|:--------|:-------:|---------:|
 |   66.6  |  41.9   |  16.1    |
 *M_album = album popularity mean, M_track = track popularity mean, SD_track = standard deviation of track popularity.*
 
