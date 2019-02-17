@@ -3,7 +3,7 @@ Feb.10
 
 # Research question
 1. The difference between songs of Rihanna and Beyonc, the queens of pop music
-2. The trend of pop-music.
+2. The characterist of pop-music.
 
 # Corpus:
 The selected artists are Rihanna and Beyonce.
@@ -29,11 +29,10 @@ Furthermore, both tracks has a low instrumentalness
 # Data visualization
 
 ![relation between danceabilty and artists](dance-art.png)
-- Rihanna prefers minor than minor songs and a
-- the danceability of songs of beyongs spead more equality than Rihanna's
+- Rihanna prefers minor than minor songs
+- the danceability of songs of beyongs spead equalier than Rihanna's
 
-
-![relation between loudness and popularity](loud-popu.png)
+![relation between loudness and popularity](loudness-pop.png)
 - the relationship between popularity and loudness shows a contradiction between songs of Rihanna and Beyonce.
 
 ![relation between tempo and popularity](tempo-pop.png)
