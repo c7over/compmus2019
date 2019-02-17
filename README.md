@@ -25,4 +25,6 @@ On average, the popularity of songs of rihanna is higer than songs of Beyonce.Ho
 
 # Data visualization
 
-![---](dance-art.png)
+
+![image of danceabilty and artists](dance-art.png)
+![relation between loudness and popularity](loud-popu.png)
