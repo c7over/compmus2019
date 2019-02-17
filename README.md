@@ -1,20 +1,21 @@
-git config --global user.email "jiangqinmin@sina.com"
-git config --global user.name "c7over"
-
-
-
-
-
 # compmus2019
 Feb.10
 
-The selected artist is Rihanna. There are 13 albums released. Excluding the revised versions, in total there are 8 official albums with 106 observations. 
+Corpus:
+The selected artist is Rihanna and Beyonce.
+- Rihanna:
+13 albums released. Excluding the edit,remix,live versions, there are 8 official albums with 106 observations in total . 
+- Reyonce:
+12 albums released. Excluding the edit,remix, live versions, there are 5 official albums with 84 observations in total.
 
+|Statistics                    |
+|:----------------------------:|
 | M_album | M_track | SD_track |
 |:-------:|:-------:|:--------:|
 |   66.6  |  41.9   |  16.1    |
 
 *M_album = album popularity mean, M_track = track popularity mean, SD_track = standard deviation of track popularity.*
+
 
 ## Albums
 - no obvious outlier for albums
@@ -25,3 +26,4 @@ The selected artist is Rihanna. There are 13 albums released. Excluding the revi
 ## Tracks
 - the quickest tempo of the track "HARD" (tempo = 182.03) and "What Now" (tempo = 180.011) does not show a good result in the market (popularity equals to 54 and 46 respectively)
 - key of C has the highest mean popularity (Mean_pop = 70), and a relatively high acousticness (Mean_acous = 0.261).
+
