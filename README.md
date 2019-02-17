@@ -1,11 +1,11 @@
 # compmus2019
 Feb.10
 
-#Research question
+# Research question
 1. The difference between songs of Rihanna and Beyonc, the queens of pop music
 2. The trend of pop-music.
 
-#Corpus:
+# Corpus:
 The selected artists are Rihanna and Beyonce.
 - Rihanna:
 13 albums released. Excluding the edit,remix,live versions, there are 8 official albums with 106 observations in total . 
@@ -23,6 +23,6 @@ Statistical result:
 
 On average, the popularity of songs of rihanna is higer than songs of Beyonce.However, the standard deviation of track popularity of Beyonce is higher than the one of Rihannan, reflecting a higher degree of dispersion of songs popularity.
 
-#Data visualization
+# Data visualization
 
-![---](Rplot.png)
+![---](dance-art.png)
