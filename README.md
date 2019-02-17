@@ -8,10 +8,11 @@ Feb.10
 # Corpus:
 The selected artists are Rihanna and Beyonce.
 - Rihanna:
-13 albums released. Excluding the edit,remix,live versions, there are 8 official albums with 106 observations in total . 
+  - 13 albums released. Excluding the edit,remix,live versions, there are 8 official albums with 106 observations in total. 
+  - The album "a girl like me" obtain the lowest album popularity (pop=46), whereas the other 7 are within the range from 60 to 80.
 - Reyonce:
-12 albums released. Excluding the edit,remix, live versions, there are 5 official albums with 84 observations in total.
-
+  - 12 albums released. Excluding the edit,remix, live versions, there are 5 official albums with 84 observations in total.
+  - 
 Statistical result:
 
 |Artist   | M_album | M_track | SD_track |
@@ -23,8 +24,17 @@ Statistical result:
 
 On average, the popularity of songs of rihanna is higer than songs of Beyonce.However, the standard deviation of track popularity of Beyonce is higher than the one of Rihannan, reflecting a higher degree of dispersion of songs popularity.
 
+Furthermore, both tracks has a low instrumentalness
+
 # Data visualization
 
+![relation between danceabilty and artists](dance-art.png)
+- Rihanna prefers minor than minor songs and a
+- the danceability of songs of beyongs spead more equality than Rihanna's
 
-![image of danceabilty and artists](dance-art.png)
+
 ![relation between loudness and popularity](loud-popu.png)
+- the relationship between popularity and loudness shows a contradiction between songs of Rihanna and Beyonce.
+
+![relation between tempo and popularity](tempo-pop.png)
+- The tempo of the most popular song for both artists are all equal to 99.
