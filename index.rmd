@@ -13,17 +13,21 @@ output:
 library(tidyverse)
 library(plotly)
 library(spotifyr)
-Sys.setenv(SPOTIFY_CLIENT_ID = '5fa5f25af301450194889fb4321233c1')
-Sys.setenv(SPOTIFY_CLIENT_SECRET = '278abe33652e42fbab62a69f808e1792')
+source('spotify.R')
 ```
 
-### Introduction 
+### Research quesion and Corpus
 
-This is introductory text. In general, it is not possible to use headers in this text.
+Research quesion:
+1. The difference between songs of Rihanna and Beyonc, the queens of pop music
+2. The characterist of pop-music.
 
-***
+Corpus:
+The selected artists are Rihanna and Beyonce.
+- Rihanna:
+  - 13 albums released. Excluding the edit,remix,live versions, there are 8 official albums with 106 observations in total. 
+  - The album "a girl like me" obtain the lowest album popularity (pop=46), whereas the other 7 are within the range from 60 to 80.
+- Reyonce:
+  - 12 albums released. Excluding the edit,remix, live versions, there are 5 official albums with 84 observations in total.
+  - 
 
-This is a second column of introductory text.
-
-
-### The Grammys are angrier than the Edisons
