@@ -1,6 +1,6 @@
 ---
 title: "Week 8 — Storyboards"
-author: "Clover Jiang"
+author: "John Ashley Burgoyne"
 date: "20 February 2019"
 output: 
     flexdashboard::flex_dashboard:
@@ -13,7 +13,8 @@ output:
 library(tidyverse)
 library(plotly)
 library(spotifyr)
-source('spotify.R')
+Sys.setenv(SPOTIFY_CLIENT_ID = '5fa5f25af301450194889fb4321233c1')
+Sys.setenv(SPOTIFY_CLIENT_SECRET = '278abe33652e42fbab62a69f808e1792')
 ```
 
 ### Introduction 
@@ -26,9 +27,3 @@ This is a second column of introductory text.
 
 
 ### The Grammys are angrier than the Edisons
-
-```{r}
-
-***
-
-Here is a thorough description of the visualisation.
