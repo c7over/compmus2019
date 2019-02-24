@@ -1,0 +1,34 @@
+---
+title: "Week 8 — Storyboards"
+author: "Clover Jiang"
+date: "20 February 2019"
+output: 
+    flexdashboard::flex_dashboard:
+        storyboard: true
+        theme: lumen
+---
+
+```{r}
+# In order to use these packages, we need to install flexdashboard, plotly, and Cairo.
+library(tidyverse)
+library(plotly)
+library(spotifyr)
+source('spotify.R')
+```
+
+### Introduction 
+
+This is introductory text. In general, it is not possible to use headers in this text.
+
+***
+
+This is a second column of introductory text.
+
+
+### The Grammys are angrier than the Edisons
+
+```{r}
+
+***
+
+Here is a thorough description of the visualisation.
