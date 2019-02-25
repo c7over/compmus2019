@@ -36,7 +36,7 @@ source('spotify.R')
   | Rihanna | 66.6 |  41.9  | 14.2 |
   | Beyonce | 59.0 |  40.4  | 16.1 |
   
-### Danceability and Mode
+### Loudness, Popularity, Mode
 
 ```{r}
 RihannaAll <- get_artist_audio_features('Rihanna')
@@ -92,7 +92,9 @@ scale_x_continuous(          # Fine-tune the x axis.
 
 ***
 
-  explaination
+  - Rihanna prefer major songs, whereas Beyonce prefer minor songs.
+  - 2 outliers in beyonce songs because of low loudness. 
+  - A louder song from Rihanna gained more popularity which is contraindicated to Beyonce.
 
 
 ### the most popular song of both actirsts
