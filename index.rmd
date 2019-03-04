@@ -102,7 +102,7 @@ First_love <-
   select(start, duration, pitches)
 
 First_love %>% 
-  mutate(pitches = map(pitches, compmus_normalise, 'chebyshev')) %>% 
+  mutate(pitches = map(pitches, compmus_normalise, 'euclidean')) %>% 
   compmus_gather_chroma %>% 
   ggplot(
     aes(
@@ -121,7 +121,7 @@ Peace_Piece <-
   select(start, duration, pitches)
 
 Peace_Piece %>% 
-  mutate(pitches = map(pitches, compmus_normalise, 'chebyshev')) %>% 
+  mutate(pitches = map(pitches, compmus_normalise, 'euclidean')) %>% 
   compmus_gather_chroma %>% 
   ggplot(
     aes(
@@ -143,4 +143,82 @@ Explanation
 ### Chroma and timbre features
 
 ```{r}
+compmus_long_distance(
+    First_love %>% mutate(pitches = map(pitches, compmus_normalise, 'manhattan')),
+    Peace_Piece %>% mutate(pitches = map(pitches, compmus_normalise, 'manhattan')),
+    feature = pitches,
+    method = 'euclidean') %>% 
+    ggplot(
+        aes(
+            x = xstart + xduration / 2, 
+            width = xduration,
+            y = ystart + yduration / 2,
+            height = yduration,
+            fill = d)) + 
+    geom_tile() +
+    scale_fill_continuous(type = 'viridis', guide = 'none') +
+    labs(x = 'The Tallis Scholars', y = 'La Chapelle Royale') +
+    theme_minimal()
+
+```
+
+
+
+### Cepstrogram and Self-Similarity Matrices
+
+```{r}
+Peace_Cep <- 
+  get_tidy_audio_analysis('58yFroDNbzHpYzvicaC0de') %>% 
+    compmus_align(bars, segments) %>% 
+    select(bars) %>% unnest(bars) %>% 
+    mutate(
+        pitches = 
+            map(segments, 
+                compmus_summarise, pitches, 
+                method = 'rms', norm = 'euclidean')) %>% 
+    mutate(
+        timbre = 
+            map(segments, 
+                compmus_summarise, timbre, 
+                method = 'mean'))
+Peace_Cep %>% 
+    compmus_gather_timbre %>% 
+    ggplot(
+        aes(
+            x = start + duration / 2, 
+            width = duration, 
+            y = basis, 
+            fill = value)) + 
+    geom_tile() +
+    labs(x = 'Time (s)', y = NULL, fill = 'Magnitude') +
+    scale_fill_viridis_c(option = 'E') +
+    theme_classic()
+
+First_Cep <- 
+  get_tidy_audio_analysis('47ZWr1Nb0PUgmKgyg5JkgO') %>% 
+    compmus_align(bars, segments) %>% 
+    select(bars) %>% unnest(bars) %>% 
+    mutate(
+        pitches = 
+            map(segments, 
+                compmus_summarise, pitches, 
+                method = 'rms', norm = 'euclidean')) %>% 
+    mutate(
+        timbre = 
+            map(segments, 
+                compmus_summarise, timbre, 
+                method = 'mean'))
+First_Cep %>% 
+    compmus_gather_timbre %>% 
+    ggplot(
+        aes(
+            x = start + duration / 2, 
+            width = duration, 
+            y = basis, 
+            fill = value)) + 
+    geom_tile() +
+    labs(x = 'Time (s)', y = NULL, fill = 'Magnitude') +
+    scale_fill_viridis_c(option = 'E') +
+    theme_classic()
+```
 
