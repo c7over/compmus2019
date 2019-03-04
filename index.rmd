@@ -12,6 +12,7 @@ output:
 library(tidyverse)
 library(plotly)
 library(spotifyr)
+library(knitr)
 source('spotify.R')
 ```
 
@@ -29,12 +30,12 @@ To completed the research focusing on the piano songs of both music genres, 2 Sp
 
 | Playlist | Name | Discription | Number of tracks |
 | :-: | :-: | - |:-: |
-| ![Jazz](playlist1.png) | [Jazz Piano seleted by Jazz Pianoists](URL 'https://open.spotify.com/user/jasonluxmusic/playlist/621IKNkRFQQkauQygKcrPC?si=IrbnsHjhRuiDFekHGD9pbg')  | Jazz piano pieces selected by pianists. Solo acoustic piano only; no rhythm or vocals.| 65 |
+| ![Jazz](playlist1.png)| [Jazz Piano seleted by Jazz Pianoists](URL 'https://open.spotify.com/user/jasonluxmusic/playlist/621IKNkRFQQkauQygKcrPC?si=IrbnsHjhRuiDFekHGD9pbg')  | Jazz piano pieces selected by pianists. Solo acoustic piano only; no rhythm or vocals.| 65 |
 | ![Classical](playlist2.png)| [Classical Piano Essentials](URL'https://open.spotify.com/user/doublejmusic/playlist/5ifMsPihlkYEGCakqfqj17?si=kPoYH712REKzdDsE6Dxf_A') | The world's greatest piano songs, featuring Fur Elise, Clair De Lune, River flows in you etc.) | 135 |
 
 ### Comparison and Analysis
 
-```{r}
+```{r out.width = "50%"}
 
 #Jazz
 Jazz <- get_playlist_audio_features('jasonluxmusic', '621IKNkRFQQkauQygKcrPC')
@@ -91,7 +92,9 @@ ggplotly(LMVE)
 
 fail to add a label -- to be fixed.
 Just changed topic
-To be continue.
+To be continue. ![energy](energy.png)
+
+
 
 ### Chromagrams features
 
