@@ -263,8 +263,10 @@ ggplotly(First_pic)
 
 ```
 
-I made 2 Self-Similarity Matrices, but you cannot roll down to see another one.
+***
 
+
+I made 2 Self-Similarity Matrices, but you cannot roll down to see another one.
 
 
 ### Keygram 
@@ -273,7 +275,7 @@ I made 2 Self-Similarity Matrices, but you cannot roll down to see another one.
 **Error in eval(lhs, parent, parent) : object 'key_templates' not found**
 
 
- ```{r}
+
 circshift <- function(v, n) {if (n == 0) v else c(tail(v, n), head(v, -n))}
                                     
     # C     C#    D     Eb    E     F     F#    G     Ab    A     Bb    B 
@@ -392,8 +394,6 @@ First_Key <-
     theme_minimal() +
     labs(x = 'Time (s)', y = '', fill = 'Distance') +
     ggtitle("First love by Yiruma")
-
-```
 
 
 
