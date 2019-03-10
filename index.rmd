@@ -266,7 +266,7 @@ ggplotly(First_pic)
 ***
 
 
-I made 2 Self-Similarity Matrices, but you cannot roll down to see another one.
+I made 2 Self-Similarity Matrices, but it cannot roll down to see the other one.
 
 
 ### Keygram 
