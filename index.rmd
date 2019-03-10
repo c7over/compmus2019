@@ -263,17 +263,17 @@ ggplotly(First_pic)
 
 ```
 
-i made 2 Self-Similarity Matrices, but you cannot roll down to see another one.
+I made 2 Self-Similarity Matrices, but you cannot roll down to see another one.
 
 
 
 ### Keygram 
 
 
-Error in eval(lhs, parent, parent) : object 'key_templates' not found
+**Error in eval(lhs, parent, parent) : object 'key_templates' not found**
 
 
-# ```{r}
+ ```{r}
 circshift <- function(v, n) {if (n == 0) v else c(tail(v, n), head(v, -n))}
                                     
     # C     C#    D     Eb    E     F     F#    G     Ab    A     Bb    B 
