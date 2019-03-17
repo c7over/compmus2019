@@ -262,7 +262,7 @@ The Chroma and timbre grams do not show a huge difference is because both tracks
 For the track peace by piece, the song suddenly changes after 2 mins and have another new section after 5 mins. By contrast, River flows in you seems to be more structured, reflecting by the regular sequential squares and yellow lines.
 
 
-### Keygram 
+### Keygram - Peace piece by Bill Evans
 
 ```{r}
 circshift <- function(v, n) {if (n == 0) v else c(tail(v, n), head(v, -n))}
@@ -367,8 +367,17 @@ Peace_Key <-
     labs(x = 'Time (s)', y = '', fill = 'Distance') +
     ggtitle("Peace Piece by Bill Evans") 
 ggplotly(Peace_Key)
+```
+
+***
+
+explanation
 
 
+
+### Keygram - First love by Yiruma
+
+```{r}
 First_Key <- 
     get_tidy_audio_analysis('47ZWr1Nb0PUgmKgyg5JkgO') %>% 
     compmus_align(sections, segments) %>% 
