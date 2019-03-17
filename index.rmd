@@ -259,7 +259,7 @@ ggplotly(First_pic)
 Self-similarity matrics graphically depict the similarity between two-time regions in 2 audio files. One audio file is represented as a square. Each side of the square is proportional to the length of the piece, and time runs from left to right as well as from bottom to top. Similar regions are dark  while dissimilar regions are  the novelty which is illustrated by the yellow line. Thus there is always a dark diagonal line running from bottom left to top right because the audio is always the most similar to itself at any particular time.
 The Chroma and timbre grams do not show a huge difference is because both tracks are played only by piano. However, the music structure between 2 songs differs. 
 
-For the track peace by piece, the song suddenly changes after 2 mins and have another new section after 5 mins. By contrast, River flows in you seems to be more structured, reflecting by the regular sequential squares and yellow lines.
+For the track peace by piece, the song suddenly changes after 2 mins and have another new section after 5 mins. By contrast, River flows in you seems to be more structured, reflecting by the regularsequential squares and yellow lines.
 
 
 ### Keygram - Peace piece by Bill Evans
@@ -372,6 +372,7 @@ ggplotly(Peace_Key)
 ***
 
 explanation
+the graph does not show....
 
 
 
@@ -401,6 +402,7 @@ ggplotly(First_pic)
 ***
 
 explanation
+
 
 
 
