@@ -491,10 +491,6 @@ Error:
 ![Data](2.png)
 
 
-
-
-
-
 ### code
 
 Dataset_clus <- 
