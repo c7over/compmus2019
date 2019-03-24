@@ -485,19 +485,17 @@ indie_cv %>%
 ### Hierarchical Clustering
 
 Error: 
-![Jazz](1.png)
+![Code](1.png)
 
-The way I compute my "dataset":
-![Jazz](2.png)
-
-
+### The way I compute my "dataset":
+![Data](2.png)
 
 
 
 
 
 
-
+### code
 
 Dataset_clus <- 
     Dataset %>% 
