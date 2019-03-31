@@ -37,10 +37,10 @@ To completed the research focusing on the *piano* songs of both music genres ( a
 
 | Playlist | Name | Discription | Number of tracks | Popular song |
 | :-: | :-: | - |:-: |:-:
-| ![Jazz](playlist11.png)| [Jazz Piano seleted by Jazz Pianoists](URL 'https://open.spotify.com/user/jasonluxmusic/playlist/621IKNkRFQQkauQygKcrPC?si=IrbnsHjhRuiDFekHGD9pbg')  | Jazz piano pieces selected by pianists. Solo acoustic piano only; no rhythm or vocals.| 65 | Peace piece _ Bill Evans |
-| ![Classical](playlist22.png)| [Classical Piano Essentials](URL'https://open.spotify.com/user/doublejmusic/playlist/5ifMsPihlkYEGCakqfqj17?si=kPoYH712REKzdDsE6Dxf_A') | The world's greatest piano songs, featuring Fur Elise, Clair De Lune, River flows in you etc.) | 135 | First love _ Yiruma |
+| ![Jazz](playlist11.png)| [Jazz Piano seleted by Jazz Pianoists](https://open.spotify.com/user/jasonluxmusic/playlist/621IKNkRFQQkauQygKcrPC?si=IrbnsHjhRuiDFekHGD9pbg)  | Jazz piano pieces selected by pianists. Solo acoustic piano only; no rhythm or vocals.| 65 | Peace piece _ Bill Evans |
+| ![Classical](playlist22.png)| [Classical Piano Essentials](https://open.spotify.com/user/doublejmusic/playlist/5ifMsPihlkYEGCakqfqj17?si=kPoYH712REKzdDsE6Dxf_A) | The world's greatest piano songs, featuring Fur Elise, Clair De Lune, River flows in you etc.) | 135 | First love _ Yiruma |
 
-Spotify API have 12 features for a track, namely, key, mode, time_signature, acousticness, danceability, energy, instrumentalness, liveness, loudness, speechiness, valence, tempo. To see explanation for each variable, please click "[Here](URL'https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/')"
+Spotify API have 12 features for a track, namely, key, mode, time_signature, acousticness, danceability, energy, instrumentalness, liveness, loudness, speechiness, valence, tempo. To see explanation for each variable, please click "[Here](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)"
 
 ### Chromagrams features of 2 songs
 
@@ -405,7 +405,7 @@ The heatmap at the left shows the performance of a classifier trying to distingu
 
 It displays the results, after 10-fold cross-validation, of a nearest-neighbour classifier with 10 Spotify features (danceability, energy, loudness, speechiness, acousticness , instrumentalness, liveness, valence, tempo,  durations) and 12 pitch classes of the song. 
 
-The performance of the classifier is above average: overall classification accuracy is 78%, with a J-index of 0.53. The precision of the classifier’s predictions of Jazz music is lower than the one predicts Classical. 
+24 over 116 (\approx 20%) classical music is classified in the wrong class whereas 19 over 67 (\approx 28%) Jazz music is classified wrongly. The performance of the classifier is above average: overall classification accuracy is 78%, with a J-index of 0.53. The precision of the classifier’s predictions of Jazz music is lower than the one predicts Classical. 
 
 
 ### 4 major track differences between 2 list {data-commentary-width=500}
@@ -467,7 +467,7 @@ ggplotly(LMVE)
 
 ***
 
-Using a random-forest classifier, the most important features for classifying tracks among these playlists are:loudness, energy, valance.
+Using a random-forest classifier, the most important features for classifying tracks among these playlists are:**loudness, energy, valance**.
 
 This graph at the left, therefore, is made to shows the above 3 dimensions plus modes of Jazz and Classical music. The *x* axis shows 'loudness' and the *y* axis shows Spotify’s 'valence’ feature.  The major mode is in <font color=#E69F00>orange</font>  whereas the minor mode is in <font color=#56B4E9>blue</font>. The size of each dot represents the energy of each track.
 
@@ -475,7 +475,7 @@ In Jazz tracks, the proportion of **majors** ( *88%* ) is relatively larger than
 
 The **loudness** is more varied for Classical music. It is mainly distributed from -26 to -13 in Jazz list, but this range is larger in Classical music list where it is distributed from -36 to -15 with a higher standard deviation judging by the more scattered dots. Comparing with the relatively similar **valence** feature in the Classical list (except the highest and lowest valence tracks), Classical music is peaceful on average whereas Jazz music is evenly distributed across different energy. According to the dots size and the figures in Figure 2, Classical music is peaceful on average whereas Jazz music is evenly distributed across different energy. 
 
-All in all, the visualisation shows that Jazz music is (according to Spotify) rather louder and rather energetic than the Classical music. This may tell that as a freesytle music genre, Jazz players put more emphasizing on the role of **melogy, rhythm and emotion**.
+All in all, the visualisation shows that Jazz music is (according to Spotify) rather louder and rather energetic than the Classical music. This may tell that as a freestyle music genre, Jazz players put more emphasizing on the role of **melogy, rhythm and emotion**.
 
 **Figure 1.** A summary of the mean of each variable.
 
@@ -591,6 +591,21 @@ hclust(Classic_dist, method = 'average') %>% dendro_data %>% ggdendrogram + ggti
 
 The hierarchical clustering diagram on the left shows the similarities of the songs in each playlist. For convenient reading and comparing, I take the top 50 songs from each playlist to make the comparison, where the first graph shows the Jazz playlist and the second graph shows the Classical playlist.
 
+By hearing the 4 songs listed on the left and right side of the clustering gram, there is a clear difference of tempo and intensity.
+
 Overall,  there are more subsets in classical music and the clustering trees are higher. This explains that Jazz music is relatively more similar to each other. This probably implies that although Jazz is freestyle music, Jazz musicians are not completely ”free“. There might be some structure in their mind to playing the melody to make sure the next pop up key will not sound "wrong". The structure may be highly correlated to tempo or mode. However, Classical music, as pre-written music, can be revised over and over again before it officially released. It has the opportunity to try and correct until the composer is satisfied with his master piece.
 
 ### Conclusion
+
+Jazz and Classical music are 2 music genres with regard to the different music theory background. Furthermore, Jazz music usually is a freestyle performance different from Classical music. Therefore, This storyboard aims to show whether 2 contrary style performance  will lead to distincble features between Jazz and Classical piano music based on 2 specific tracks level and the 2 playlists.
+
+By look at 2 representative songs,  Jazz track shows a high novelty in the music structure and not monotonous melody, compared with the classical track. It does show a high - freestyle level.
+
+In general,  Jass and Classical music can be distinguished with 3 main different features on loudness, energy, valance, where Jazz is louder and energetic on average. But as a music genre famous of improvising, each Jazz music track seems not to vary from each other as much as the classical music. Jazz musicians may not be as free as we thought. 
+
+Further research, therefore, can be conducted to figure out what is highly correlated in Jazz music and what is not. The consistency might be because of the tempo or the same chroma in different modalities.
+
+
+
+Clover
+03.2019
