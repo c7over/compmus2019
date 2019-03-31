@@ -23,105 +23,26 @@ source('spotify.R')
 
 **Introduction**
 
-One of the biggest differences between jazz and classical music is that when you playing jazz, you have to improvise and compose on the spot and range things, however, with classical music, you are playing all the notes composed. A study even proved that there is a different process occurred in the brains of the jazz and classical pianists. In particular, the jazz pianists' brains began re-planning sooner than the classical pianists' brains. Classical pianists tend to focus on the 'how'. This means their focus is on technique and the personal expression they add to the piece. Jazz pianists on the other hand focus on the ‘what’ to play, meaning they are always prepared to improvise and adapt the notes they're playing. 
+Jazz and Classical music are different. The main difference is probably because when you playing jazz, you have to improvise and compose on the spot and range things, however, with classical music, you are playing all the notes composed. That is, Jazz performers play freestyle music, while classical music performers play pre-structured music.
 
-The output melody under 2 contrary mindses are different. Thus,this storyboard is going to analyzing the difference between jazz and classical music trying to illustrate what is the major difference between such freestyle and disciplined music by graphs.
+A study even proved that there is a different process occurred in the brains of the jazz and classical pianists. In particular, the jazz pianists' brains began re-planning sooner than the classical pianists' brains. Classical pianists tend to focus on 'how' to play the music. This means their focus is on technique and the personal expression they add to the piece. Jazz pianists, on the other hand, focus on  ‘what’ to play, meaning they are always prepared to improvise and adapt the notes they're playing. 
+
+2 music genre under 2 contrary mindsets are different. Thus,this storyboard is going to analyzing the difference between jazz and classical music trying to illustrate what is the major difference between such freestyle and disciplined music by graphs and to capiture how the mind set per genre influences the sound.
+
+The analysis will first show the differences comparing 2 typical and popular songs from 2 music genre and then take a general look at the 2 genre samples.
 
 **Corpus**
 
-To completed the research focusing on the piano songs of both music genres, 2 Spotify playlist will be taken. 
+To completed the research focusing on the *piano* songs of both music genres ( acousticness>0.9 for all the tracks), 2 Spotify playlists will be taken. The most popular song from each album as representatives to do song specific analysis. 2 songs are: "Peace piece" by Bill Evans from the Jazz album, and "First love" by Yiruma from the Classical album.
 
-| Playlist | Name | Discription | Number of tracks |
-| :-: | :-: | - |:-: |
-| ![Jazz](playlist11.png)| [Jazz Piano seleted by Jazz Pianoists](URL 'https://open.spotify.com/user/jasonluxmusic/playlist/621IKNkRFQQkauQygKcrPC?si=IrbnsHjhRuiDFekHGD9pbg')  | Jazz piano pieces selected by pianists. Solo acoustic piano only; no rhythm or vocals.| 65 |
-| ![Classical](playlist22.png)| [Classical Piano Essentials](URL'https://open.spotify.com/user/doublejmusic/playlist/5ifMsPihlkYEGCakqfqj17?si=kPoYH712REKzdDsE6Dxf_A') | The world's greatest piano songs, featuring Fur Elise, Clair De Lune, River flows in you etc.) | 135 |
+| Playlist | Name | Discription | Number of tracks | Popular song |
+| :-: | :-: | - |:-: |:-:
+| ![Jazz](playlist11.png)| [Jazz Piano seleted by Jazz Pianoists](URL 'https://open.spotify.com/user/jasonluxmusic/playlist/621IKNkRFQQkauQygKcrPC?si=IrbnsHjhRuiDFekHGD9pbg')  | Jazz piano pieces selected by pianists. Solo acoustic piano only; no rhythm or vocals.| 65 | Peace piece _ Bill Evans |
+| ![Classical](playlist22.png)| [Classical Piano Essentials](URL'https://open.spotify.com/user/doublejmusic/playlist/5ifMsPihlkYEGCakqfqj17?si=kPoYH712REKzdDsE6Dxf_A') | The world's greatest piano songs, featuring Fur Elise, Clair De Lune, River flows in you etc.) | 135 | First love _ Yiruma |
 
-Spotify API have 12 features for a track, namely, key, mode, time_signature, acousticness, danceability, energy, instrumentalness, liveness, loudness, speechiness, valence, tempo. To see explanation for each variable, please click "[Here](URL'https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)"
+Spotify API have 12 features for a track, namely, key, mode, time_signature, acousticness, danceability, energy, instrumentalness, liveness, loudness, speechiness, valence, tempo. To see explanation for each variable, please click "[Here](URL'https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/')"
 
-### 4 major track differences between 2 list {data-commentary-width=500}
-
-```{r}
-
-#Jazz
-Jazz <- get_playlist_audio_features('jasonluxmusic', '621IKNkRFQQkauQygKcrPC')
-
-
-#Classical
-Classical <- get_playlist_audio_features('doublejmusic', '5ifMsPihlkYEGCakqfqj17')
-
-
-#Data
-Dataset <-
-  Jazz %>% mutate(genre = "Jazz") %>%
-  bind_rows(Classical %>% mutate(genre = "Classical"))
-
-#Image
-  LMVE <- Dataset %>%                       # Start with awards.
-  ggplot(                         # Set up the plot.
-    aes(
-      x = loudness,
-      y = valence,
-      size = energy,
-      colour = mode
-    )
-  ) +
-  geom_point(alpha = 0.8) +               # Scatter plot.
-  geom_rug(size = 0.001) +       # Add 'fringes' to show data distribution.
-  facet_wrap(~ genre) +     # Separate charts per playlist.
-  scale_x_continuous(          # Fine-tune the x axis.
-    limits = c(-45, -8),
-    breaks = c(-45, 5, -8),  # Use grid-lines for quadrants only.
-    minor_breaks = NULL      # Remove 'minor' grid-lines.
-  ) +
-  scale_y_continuous(          # Fine-tune the y axis in the same way.
-    limits = c(0, 0.9),
-    breaks = c(0, 0.2, 0.9),
-    minor_breaks = NULL
-  ) +
-  scale_color_manual(values=c("#E69F00", "#56B4E9")) +
-  scale_size_continuous(       # Fine-tune the sizes of each point.
-    trans = "exp",           # Use an exp transformation to emphasise loud.
-    guide = "none"           # Remove the legend for size.
-  ) +
-  theme_light() +              # Use a simpler them.
-  labs(                        # Make the titles nice.
-    x = "loudness",
-    y = "valence",
-    size = "energy",
-    colour = "Mode"
-  )
-ggplotly(LMVE)
-
-```
-
-***
-
-*fail to add a label -- to be fixed.*
-
-
-This graph shows the four most different dimensions of jazz and classical music. The *x* axis shows 'loudness' and the *y* axis shows Spotify’s 'valence’ feature.  The major mode is in <font color=#E69F00>orange</font>  whereas the minor mode is in <font color=#56B4E9>blue</font>. The size of each dot represents the energy of each track.
-
-In jazz tracks, the proportion of **majors** ( *88%* ) is relatively larger than the proportion of major in Classical music list (*63%*). The **loudness** is mainly distributed from -26 to -13 in jazz list, but this range is lager in Classical music list where it is distributed from -36 to -15 with a higher standard deviation judging by the more scattered dots. The feature of **valence** does not seems so different except the highest and lowest valence tracks in the Classical list. According to the dots size and the figures in Figure 2, Classical music is peaceful on average whereas jazz music is evenly distributed across different energy.
-
-All in all, the visualisation shows that Jazz music is (according to Spotify) rather louder and rather energetic than the Claasical music.
-
-
-
-**Figure 1.** A summary of the mean of each variable.
-
-| Genre | M_danancibility | ***M_enerergy*** | ***M_loudness*** | M_speechiness | M_liveness | ***M_valence*** | M_tempo | M_instrumentalness | M_acousticness |
-| :-: |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Jazz| 0.423 | *0.127* | *-20.6* | 0.0544  | 0.162 | *0.179* | 96.9  | 0.887 |  0.981  | 
-| Classialc| 0.376 | *0.0609*  | *-27.0* | 0.0562 |  0.103 | *0.226* |  93.0 | 0.895 | 0.991 |
-
-
-**Figure 2.** Energy distrybution (Vertical dotted line represents the average value of each genre.)
-
-![energy](energy.png)
-
-
-
-### Chromagrams features
+### Chromagrams features of 2 songs
 
 ```{r}
 First_love <- 
@@ -166,106 +87,12 @@ Peace_Piece %>%
 
 ***
 
-First love by Yiruma and Peace piece by Bill Evans are the most popular songs in 2 list. Chromatograms show the capture 12 pitch classes for each song while the music is playing.
-One interesting fact is that Peace piece from Jazz list prefer playing G a lot in the key of C major with relatively gentle harmony showed by the lighter blue in other pitch classes, but Yiruma seems to be fair to the three major keys when playing a song in A major.
+Chromagrams at the left show the intensity of the twelve pitch classes for each song per small fragment while the music is playing. One interesting fact is that “Peace piece” from the Jazz list prefers playing G a lot in the key of C major with relatively gentle harmony showed by the lighter blue in other pitch classes, while Yiruma seems to stick to the three major keys when playing a song in A major.
+
+In addition, in "Peace piece",  the song is with a strong preference on G with some mention of B, A,  E and C. However, the melody of  "river flows in you" seems more “colorful” with B, A, F#, E, D and  C#. No basis for any keys.
 
 
-###  Self-Similarity Matrices - Peace piece by Bill Evans
-
-```{r}
-Peace_self <- 
-    get_tidy_audio_analysis('58yFroDNbzHpYzvicaC0de') %>% 
-    compmus_align(bars, segments) %>% 
-    select(bars) %>% unnest(bars) %>% 
-    mutate(
-        pitches = 
-            map(segments, 
-                compmus_summarise, pitches, 
-                method = 'acentre', norm = 'manhattan')) %>% 
-    mutate(
-        timbre = 
-            map(segments, 
-                compmus_summarise, timbre, 
-                method = 'mean'))
-Peace_pic <- 
-    bind_rows(
-        Peace_self %>% compmus_self_similarity(pitches, 'aitchison') %>% mutate(d = d / max(d), type = "Chroma"),
-        Peace_self %>% compmus_self_similarity(timbre, 'euclidean') %>% mutate(d = d / max(d), type = "Timbre")) %>% 
-    ggplot(
-        aes(
-            x = xstart + xduration / 2, 
-            width = xduration,
-            y = ystart + yduration / 2,
-            height = yduration,
-            fill = d)) + 
-    geom_tile() +
-    coord_fixed() +
-    facet_wrap(~ type) +
-    scale_fill_viridis_c(option = 'E', guide = 'none') +
-    theme_classic() +
-    labs(x = '', y = '') +
-    ggtitle("Peace Piece by Bill Evans") 
-ggplotly(Peace_pic)
-
-
-```
-
-***
-
-*Illustrating pitch- and timbre-based self-similarity of the most popular track in the Jazz play list called Peace piece by Bill Evans* 
-
-
-
-### Self-Similarity Matrices - First love by Yiruma
-
-```{r}
-First_self <- 
-    get_tidy_audio_analysis('47ZWr1Nb0PUgmKgyg5JkgO') %>% 
-    compmus_align(bars, segments) %>% 
-    select(bars) %>% unnest(bars) %>% 
-    mutate(
-        pitches = 
-            map(segments, 
-                compmus_summarise, pitches, 
-                method = 'acentre', norm = 'manhattan')) %>% 
-    mutate(
-        timbre = 
-            map(segments, 
-                compmus_summarise, timbre, 
-                method = 'mean'))
-First_pic <- 
-    bind_rows(
-        First_self %>% compmus_self_similarity(pitches, 'aitchison') %>% mutate(d = d / max(d), type = "Chroma"),
-        First_self %>% compmus_self_similarity(timbre, 'euclidean') %>% mutate(d = d / max(d), type = "Timbre")) %>% 
-    ggplot(
-        aes(
-            x = xstart + xduration / 2, 
-            width = xduration,
-            y = ystart + yduration / 2,
-            height = yduration,
-            fill = d)) + 
-    geom_tile() +
-    coord_fixed() +
-    facet_wrap(~ type) +
-    scale_fill_viridis_c(option = 'E', guide = 'none') +
-    theme_classic() +
-    labs(x = '', y = '')  +
-  ggtitle("River Flows in You by Yiruma")
-ggplotly(First_pic)
-
-```
-
-***
-
-*Illustrating pitch- and timbre-based self-similarity of the most popular track in the Classic play list called First love by Yiruma* 
-
-Self-similarity matrics graphically depict the similarity between two-time regions in 2 audio files. One audio file is represented as a square. Each side of the square is proportional to the length of the piece, and time runs from left to right as well as from bottom to top. Similar regions are dark  while dissimilar regions are  the novelty which is illustrated by the yellow line. Thus there is always a dark diagonal line running from bottom left to top right because the audio is always the most similar to itself at any particular time.
-The Chroma and timbre grams do not show a huge difference is because both tracks are played only by piano. However, the music structure between 2 songs differs. 
-
-For the track peace by piece, the song suddenly changes after 2 mins and have another new section after 5 mins. By contrast, River flows in you seems to be more structured, reflecting by the regularsequential squares and yellow lines.
-
-
-### Keygram - Peace piece by Bill Evans
+### Chordgram - Peace piece by Bill Evans
 
 ```{r}
 circshift <- function(v, n) {if (n == 0) v else c(tail(v, n), head(v, -n))}
@@ -361,7 +188,7 @@ Peace_Key <-
             map(segments, 
                 compmus_summarise, pitches, 
                 method = 'acentre', norm = 'manhattan')) %>% 
-    compmus_match_pitch_template(key_templates, 'aitchison', 'manhattan') %>% 
+    compmus_match_pitch_template(chord_templates, 'angular', 'euclidean') %>% 
     ggplot(
         aes(x = start + duration / 2, width = duration, y = name, fill = d)) +
     geom_tile() +
@@ -374,12 +201,10 @@ ggplotly(Peace_Key)
 
 ***
 
-explanation
-the graph does not show....
+The chordgram at the left shows the chords in "Peace piece". The piece is segmented according to Spotify’s estimates, and the distances represented are 	cosine distances from Spotify’s chroma vectors of the keys in the **y** axis. The song is in C chords with A7 chords.
 
 
-
-### Keygram - First love by Yiruma
+### Chordgram - River flows in you by Yiruma
 
 ```{r}
 First_Key <- 
@@ -391,7 +216,7 @@ First_Key <-
             map(segments, 
                 compmus_summarise, pitches, 
                 method = 'acentre', norm = 'manhattan')) %>% 
-    compmus_match_pitch_template(key_templates, 'aitchison', 'manhattan') %>% 
+    compmus_match_pitch_template(chord_templates, 'angular', 'euclidean') %>% 
     ggplot(
         aes(x = start + duration / 2, width = duration, y = name, fill = d)) +
     geom_tile() +
@@ -399,23 +224,115 @@ First_Key <-
     theme_minimal() +
     labs(x = 'Time (s)', y = '', fill = 'Distance') +
     ggtitle("River Flows in You by Yiruma")
-ggplotly(First_pic)
+ggplotly(First_Key)
 ```
 
 ***
 
-explanation
+The chordgram at the left shows the chords dist in "River flows in you". The piece is segmented according to Spotify’s estimates, and the distances represented are 	cosine distances from Spotify’s chroma vectors of the keys in the **y** axis. The whole song is on A chords.
+
+
+### Self-Similarity Matrices - Peace piece by Bill Evans
+
+```{r}
+Peace_self <- 
+    get_tidy_audio_analysis('58yFroDNbzHpYzvicaC0de') %>% 
+    compmus_align(bars, segments) %>% 
+    select(bars) %>% unnest(bars) %>% 
+    mutate(
+        pitches = 
+            map(segments, 
+                compmus_summarise, pitches, 
+                method = 'acentre', norm = 'manhattan')) %>% 
+    mutate(
+        timbre = 
+            map(segments, 
+                compmus_summarise, timbre, 
+                method = 'mean'))
+Peace_pic <- 
+    bind_rows(
+        Peace_self %>% compmus_self_similarity(pitches, 'aitchison') %>% mutate(d = d / max(d), type = "Chroma"),
+        Peace_self %>% compmus_self_similarity(timbre, 'euclidean') %>% mutate(d = d / max(d), type = "Timbre")) %>% 
+    ggplot(
+        aes(
+            x = xstart + xduration / 2, 
+            width = xduration,
+            y = ystart + yduration / 2,
+            height = yduration,
+            fill = d)) + 
+    geom_tile() +
+    coord_fixed() +
+    facet_wrap(~ type) +
+    scale_fill_viridis_c(option = 'E', guide = 'none') +
+    theme_classic() +
+    labs(x = '', y = '') +
+    ggtitle("Peace Piece by Bill Evans") 
+ggplotly(Peace_pic)
+
+
+```
 
 ***
+
+Self-similarity matrics graphically depict the similarity of song itself.
+One audio file is represented as a square. Each side of the square is proportional to the length of the piece, and time runs from left to right as well as from bottom to top. Similar regions are dark  while dissimilar regions are  the novelty which is illustrated by the yellow line. Thus there is always a dark diagonal line running from bottom left to top right because the audio is always the most similar to itself at any particular time.
+The Chroma and timbre grams do not show a huge difference is because both tracks are played only by piano. However, the music structure between 2 songs differs. 
+
+For the track "peace by piece", the song suddenly changes after 2 mins and have another new section after 5 mins.It does not have a obvious repeated part after the intro.
+
+### Self-Similarity Matrices - River flows in you by Yiruma
+
+```{r}
+First_self <- 
+    get_tidy_audio_analysis('47ZWr1Nb0PUgmKgyg5JkgO') %>% 
+    compmus_align(bars, segments) %>% 
+    select(bars) %>% unnest(bars) %>% 
+    mutate(
+        pitches = 
+            map(segments, 
+                compmus_summarise, pitches, 
+                method = 'acentre', norm = 'manhattan')) %>% 
+    mutate(
+        timbre = 
+            map(segments, 
+                compmus_summarise, timbre, 
+                method = 'mean'))
+First_pic <- 
+    bind_rows(
+        First_self %>% compmus_self_similarity(pitches, 'aitchison') %>% mutate(d = d / max(d), type = "Chroma"),
+        First_self %>% compmus_self_similarity(timbre, 'euclidean') %>% mutate(d = d / max(d), type = "Timbre")) %>% 
+    ggplot(
+        aes(
+            x = xstart + xduration / 2, 
+            width = xduration,
+            y = ystart + yduration / 2,
+            height = yduration,
+            fill = d)) + 
+    geom_tile() +
+    coord_fixed() +
+    facet_wrap(~ type) +
+    scale_fill_viridis_c(option = 'E', guide = 'none') +
+    theme_classic() +
+    labs(x = '', y = '')  +
+  ggtitle("River Flows in You by Yiruma")
+ggplotly(First_pic)
+
+
+```
+
+***
+
+By contrast, "River flows in you" seems to be more structured, reflecting by the regularsequential squares and yellow lines.
+
 
 ### Classification Algorithms
 
 ```{r}
 Jazz_120<- get_playlist_audio_features('jasonluxmusic', '621IKNkRFQQkauQygKcrPC') %>% 
-    slice(1:40) %>% 
+    slice(1:67) %>% 
     add_audio_analysis
 Classical_120 <- get_playlist_audio_features('doublejmusic', '5ifMsPihlkYEGCakqfqj17') %>% 
-    slice(1:40) %>% 
+    slice(1:140) %>% 
     add_audio_analysis
 
 indie <- 
@@ -454,9 +371,7 @@ indie_class <-
                duration_ms +
                C + `C#|Db` + D + `D#|Eb` +
                E + `F` + `F#|Gb` + G +
-               `G#|Ab` + A + `A#|Bb` + B +
-               c01 + c02 + c03 + c04 + c05 + c06 +
-               c07 + c08 + c09 + c10 + c11 + c12,
+               `G#|Ab` + A + `A#|Bb` + B,
            data = indie) %>% 
     step_center(all_predictors()) %>%
     step_scale(all_predictors()) %>%
@@ -464,7 +379,7 @@ indie_class <-
     prep(indie) %>% 
     juice
 
-indie_cv <- indie_class %>% vfold_cv(5)
+indie_cv <- indie_class %>% vfold_cv(10)
 
 indie_knn <- nearest_neighbor(neighbors = 1) %>% set_engine('kknn')
 predict_knn <- function(split)
@@ -482,19 +397,105 @@ indie_cv %>%
     autoplot(type = 'heatmap')
 ```
 
+***
+
+After 2 songs anaylsis, let's, then, take a look from a general view.
+
+The heatmap at the left shows the performance of a classifier trying to distinguish the jazz playlist from the classical playlist. It works with the whole sample set with 140 Classical songs and 67 Jazz songs.
+
+It displays the results, after 10-fold cross-validation, of a nearest-neighbour classifier with 10 Spotify features (danceability, energy, loudness, speechiness, acousticness , instrumentalness, liveness, valence, tempo,  durations) and 12 pitch classes of the song. 
+
+The performance of the classifier is above average: overall classification accuracy is 78%, with a J-index of 0.53. The precision of the classifier’s predictions of Jazz music is lower than the one predicts Classical. 
+
+
+### 4 major track differences between 2 list {data-commentary-width=500}
+
+```{r}
+#Jazz
+Jazz <- get_playlist_audio_features('jasonluxmusic', '621IKNkRFQQkauQygKcrPC') %>%
+  arrange(track_popularity) %>%
+  mutate(track_name = paste(seq(length(track_name)), track_name)) 
+
+#Classical
+Classical <- get_playlist_audio_features('doublejmusic', '5ifMsPihlkYEGCakqfqj17') %>%
+  arrange(track_popularity) %>%
+  mutate(track_name = paste(seq(length(track_name)), track_name)) 
+
+#Data
+Dataset <-
+  Jazz %>% mutate(genre = "Jazz") %>%
+  bind_rows(Classical %>% mutate(genre = "Classical")) 
+
+#Image
+  LMVE <- Dataset %>%                       # Start with awards.
+  ggplot(                         # Set up the plot.
+    aes(
+      x = loudness,
+      y = valence,
+      size = energy,
+      colour = mode
+    )
+  ) +
+  geom_point(alpha = 0.8) +               # Scatter plot.
+  geom_rug(size = 0.001) +       # Add 'fringes' to show data distribution.
+  facet_wrap(~ genre) +     # Separate charts per playlist.
+  scale_x_continuous(          # Fine-tune the x axis.
+    limits = c(-45, -8),
+    breaks = c(-45, 5, -8),  # Use grid-lines for quadrants only.
+    minor_breaks = NULL      # Remove 'minor' grid-lines.
+  ) +
+  scale_y_continuous(          # Fine-tune the y axis in the same way.
+    limits = c(0, 0.9),
+    breaks = c(0, 0.2, 0.9),
+    minor_breaks = NULL
+  ) +
+  scale_color_manual(values=c("#E69F00", "#56B4E9")) +
+  scale_size_continuous(       # Fine-tune the sizes of each point.
+    trans = "exp",           # Use an exp transformation to emphasise loud.
+    guide = "none"           # Remove the legend for size.
+  ) +
+  theme_light() +              # Use a simpler them.
+  labs(                        # Make the titles nice.
+    x = "loudness",
+    y = "valence",
+    size = "energy",
+    colour = "Mode"
+  )
+ggplotly(LMVE)
+
+```
+
+***
+
+Using a random-forest classifier, the most important features for classifying tracks among these playlists are:loudness, energy, valance.
+
+This graph at the left, therefore, is made to shows the above 3 dimensions plus modes of Jazz and Classical music. The *x* axis shows 'loudness' and the *y* axis shows Spotify’s 'valence’ feature.  The major mode is in <font color=#E69F00>orange</font>  whereas the minor mode is in <font color=#56B4E9>blue</font>. The size of each dot represents the energy of each track.
+
+In Jazz tracks, the proportion of **majors** ( *88%* ) is relatively larger than the proportion of major in Classical music list (*63%*).  Although Jazz modes are more or less different from the tradition scale,  it seems like Spotify prefers to classifying them into major. 
+
+The **loudness** is more varied for Classical music. It is mainly distributed from -26 to -13 in Jazz list, but this range is larger in Classical music list where it is distributed from -36 to -15 with a higher standard deviation judging by the more scattered dots. Comparing with the relatively similar **valence** feature in the Classical list (except the highest and lowest valence tracks), Classical music is peaceful on average whereas Jazz music is evenly distributed across different energy. According to the dots size and the figures in Figure 2, Classical music is peaceful on average whereas Jazz music is evenly distributed across different energy. 
+
+All in all, the visualisation shows that Jazz music is (according to Spotify) rather louder and rather energetic than the Classical music. This may tell that as a freesytle music genre, Jazz players put more emphasizing on the role of **melogy, rhythm and emotion**.
+
+**Figure 1.** A summary of the mean of each variable.
+
+| Genre | M_danancibility | ***M_enerergy*** | ***M_loudness*** | M_speechiness | M_liveness | ***M_valence*** | M_tempo | M_instrumentalness | M_acousticness |
+| :-: |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Jazz| 0.423 | *0.127* | *-20.6* | 0.0544  | 0.162 | *0.179* | 96.9  | 0.887 |  0.981  | 
+| Classialc| 0.376 | *0.0609*  | *-27.0* | 0.0562 |  0.103 | *0.226* |  93.0 | 0.895 | 0.991 |
+
+
+**Figure 2.** Energy distrybution (Vertical dotted line represents the average value of each genre.)
+
+![energy](energy.png)
+
+
+
 ### Hierarchical Clustering
 
-Error: 
-![Code](1.png)
-
-### The way I compute my "dataset":
-![Data](2.png)
-
-
-### code
-
-Dataset_clus <- 
-    Dataset %>% 
+```{r}
+Jazz_clus <- 
+    Jazz[1:50,] %>% 
     add_audio_analysis %>% 
     mutate(
         segments = 
@@ -512,9 +513,7 @@ Dataset_clus <-
     mutate(pitches = map(pitches, compmus_normalise, 'clr')) %>% 
     mutate_at(vars(pitches, timbre), map, bind_rows) %>% 
     unnest(pitches, timbre)
-
-
-Dataset_juice <- 
+Jazz_juice <- 
     recipe(track_name ~
                danceability +
                energy +
@@ -531,15 +530,67 @@ Dataset_juice <-
                `G#|Ab` + A + `A#|Bb` + B +
                c01 + c02 + c03 + c04 + c05 + c06 +
                c07 + c08 + c09 + c10 + c11 + c12,
-           data = Dataset_clus) %>% 
+           data = Jazz_clus) %>% 
     step_center(all_predictors()) %>%
     step_scale(all_predictors()) %>%
-    # step_range(all_predictors()) %>% 
-    prep(Dataset_clus %>% mutate(track_name = str_trunc(track_name, 10))) %>% 
+    step_range(all_predictors()) %>% 
+    prep(Jazz_clus %>% mutate(track_name = str_trunc(track_name, 10))) %>% 
     juice %>%
     column_to_rownames('track_name')
+Jazz_dist <- dist(Jazz_juice, method = 'euclidean')
+hclust(Jazz_dist, method = 'average') %>% dendro_data %>% ggdendrogram + ggtitle('Jazz')
 
-Dataset_dist <- dist(Data_juice, method = 'euclidean')
+Classic_clus <- 
+    Classical[1:50,] %>% 
+    add_audio_analysis %>% 
+    mutate(
+        segments = 
+            map2(segments, key, compmus_c_transpose)) %>% 
+    mutate(
+        pitches = 
+            map(segments, 
+                compmus_summarise, pitches, 
+                method = 'mean', norm = 'manhattan'),
+        timbre =
+            map(
+                segments,
+                compmus_summarise, timbre,
+                method = 'mean')) %>% 
+    mutate(pitches = map(pitches, compmus_normalise, 'clr')) %>% 
+    mutate_at(vars(pitches, timbre), map, bind_rows) %>% 
+    unnest(pitches, timbre)
+Classic_juice <- 
+    recipe(track_name ~
+               danceability +
+               energy +
+               loudness +
+               speechiness +
+               acousticness +
+               instrumentalness +
+               liveness +
+               valence +
+               tempo +
+               duration_ms +
+               C + `C#|Db` + D + `D#|Eb` +
+               E + `F` + `F#|Gb` + G +
+               `G#|Ab` + A + `A#|Bb` + B +
+               c01 + c02 + c03 + c04 + c05 + c06 +
+               c07 + c08 + c09 + c10 + c11 + c12,
+           data = Classic_clus) %>% 
+    step_center(all_predictors()) %>%
+    step_scale(all_predictors()) %>%
+    step_range(all_predictors()) %>% 
+    prep(Classic_clus %>% mutate(track_name = str_trunc(track_name, 10))) %>% 
+    juice %>%
+    column_to_rownames('track_name')
+Classic_dist <- dist(Classic_juice, method = 'euclidean')
+hclust(Classic_dist, method = 'average') %>% dendro_data %>% ggdendrogram + ggtitle('Classical')
+```
 
-protoclust(Dataset_dist, col= genre) %>% plot
+***
 
+The hierarchical clustering diagram on the left shows the similarities of the songs in each playlist. For convenient reading and comparing, I take the top 50 songs from each playlist to make the comparison, where the first graph shows the Jazz playlist and the second graph shows the Classical playlist.
+
+Overall,  there are more subsets in classical music and the clustering trees are higher. This explains that Jazz music is relatively more similar to each other. This probably implies that although Jazz is freestyle music, Jazz musicians are not completely ”free“. There might be some structure in their mind to playing the melody to make sure the next pop up key will not sound "wrong". The structure may be highly correlated to tempo or mode. However, Classical music, as pre-written music, can be revised over and over again before it officially released. It has the opportunity to try and correct until the composer is satisfied with his master piece.
+
+### Conclusion
